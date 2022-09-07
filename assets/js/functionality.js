@@ -114,6 +114,20 @@ function nextQuestion(event) {
     }, 650);
 }
 
+//endGame function carries out everything to end the game, stop the timer, etc, change page, etc.
+function endGame() {
+    //stops timer
+    clearInterval(timeInterval);
+    timerElement.textContent = timer;
+    // hides and unhides sections of the page based on the end of the game
+    outtroElement.removeAttribute("class");
+    questionElement.setAttribute("class", "hide");
+    quizOptionsElement.setAttribute("class", "hide");
+    //creating variable to save what score the player got
+    var postedScore = document.getElementById("player-score")
+    postedScore.textContent = timer + "."
+}
+
 // connects start button on intro page to the timer function
 startButton.onclick = quizStart;
 

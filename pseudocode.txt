@@ -4,7 +4,7 @@ Pseudo code
     - when you hover the answers, they highlight XXX
     - when you click the answer, it shows if you are right or wrong, then switches to the next question. XXX
     - if you are wrong, it subtracts 15 seconds from the timer. XXX 
-    - At the end of the quiz, your score is displayed, you input your initials and save that to the high scores page.
+    - At the end of the quiz, your score is displayed, you input your initials and save that to the high scores page. X
 - you can view the highscores at any time, and it saves the scores in the local storage
 
 Acceptance Criteria
@@ -16,7 +16,7 @@ THEN I am presented with another question XXX
 WHEN I answer a question incorrectly
 THEN time is subtracted from the clock XXX
 WHEN all questions are answered or the timer reaches 0
-THEN the game is over
+THEN the game is over XXX
 WHEN the game is over
 THEN I can save my initials and my score
 
