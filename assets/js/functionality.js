@@ -13,8 +13,10 @@ var outtroElement = document.getElementById("out-tro");
 var playerElement = document.getElementById("player-initials")
 var submitButton = document.getElementById("submit-scores");
 
+// start timer, hide intro elements, and show the quiz content
 function quizStart() {
-    // start timer, hide intro elements, and show the quiz content
+    //to show the timer start at 75 instead of 74
+    timerElement.textContent = timer;
     // decrement the timer down by 1 second starting at 75 and display it on page, and if the timer gets to 0, then call the endGame function and stop counting down
     timeInterval = setInterval(
         function timeDecrease() {
@@ -25,9 +27,6 @@ function quizStart() {
             }
         }
         , 1000)
-
-    //to show the timer start at 75 instead of 74
-    timerElement.textContent = timer;
 
     //hiding element that had any introduction elements
     introElement.setAttribute("class", "hide");
@@ -65,10 +64,8 @@ function displayQuestion() {
 }
 
 // function that switches to next question, and gives comments if it is right or wrong
-function nextQuestion(event) {
+function handlingAnAnswer(event) {
     var buttonElement = event.target;
-    var allButtons = document.querySelectorAll(".option")
-    console.log(allButtons);
 
     // handling for the case in which user misses the button and clicks behind it, and it throws an incorrect outcome
     if (!buttonElement.matches(".option")) {
@@ -77,35 +74,31 @@ function nextQuestion(event) {
 
     // conditional for determining when the answer is right, and changing attributes
     if (buttonElement.value === quizContent[questionNum].answer) {
+        //we have answered correctly
         buttonElement.setAttribute("style", "background-color: green");
         buttonElement.textContent = "Correct!";
         // setting all the other buttons attribute to disabled after clicking on the user answer choice
-        for (var i = 0; i < allButtons.length; i++) {
-            allButtons[i].setAttribute('disabled', 'disabled');
-        }
+        // TO DO 
 
     // determining when the answer is wrong, subtracting the penalty, updating the time, and changing attributes
     } else {
         timer = timer - 15;
         timerElement.textContent = timer;
 
-        if (timer <= 0) {
-            timer = 0;
-        }
-
         buttonElement.setAttribute("style", "background-color: red");
         buttonElement.textContent = "Incorrect!";
-        // setting all the other buttons attribute to disabled after clicking on the user answer choice
-        for (var i = 0; i < allButtons.length; i++) {
-            allButtons[i].setAttribute('disabled', 'disabled');
-        }
+
+    
     }
+
+    //calling the disable button function that I created below
+    disableButtons()
 
     // this sets a delay before moving on to the next question so you can see the response 
     setTimeout(function () {
         questionNum = questionNum + 1;
-        
-        if (timer <= 0 || questionNum === quizContent.length) {
+        // if we hit the length of the quiz, stop the game, otherwise continue on
+        if (questionNum === quizContent.length) {
             endGame();
         } else {
             displayQuestion();
@@ -114,10 +107,21 @@ function nextQuestion(event) {
     }, 650);
 }
 
+// setting all the other buttons attribute to disabled after clicking on the user answer choice
+function disableButtons() {
+    var allButtons = document.querySelectorAll(".option")
+    for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].setAttribute('disabled', 'disabled');
+    }
+
+}
 //endGame function carries out everything to end the game, stop the timer, etc, change page, etc.
 function endGame() {
     //stops timer
     clearInterval(timeInterval);
+    if (timer <= 0) {
+        timer = 0;
+    }
     timerElement.textContent = timer;
     // hides and unhides sections of the page based on the end of the game
     outtroElement.removeAttribute("class");
@@ -128,8 +132,31 @@ function endGame() {
     postedScore.textContent = timer + "."
 }
 
+// saves the score when the user inputs their initials, this function is run on submit
+function saveScore() {
+    // store the input player initials into variable
+    var playerInitials = playerElement.value.trim();
+    // make sure user inputs their initials and then creating variable for an array to store the scoreboard info
+    if (playerInitials !== "") {
+        var scoreboard = JSON.parse(window.localStorage.getItem('scoreboard')) || [];
+        //creating an object for the scores and user name
+        var userScore = {
+            playerInitials: playerInitials,
+            score: timer,
+        };
+        //putting the data from the object into local storage
+        scoreboard.push(userScore);
+        window.localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
+        //showing highscores html page after submitting their info
+        window.location.href = 'highscores.html'
+    }
+}
+
 // connects start button on intro page to the timer function
 startButton.onclick = quizStart;
 
 //connects buttons for answer options to switch to the next question function
-quizOptionsElement.onclick = nextQuestion;
+quizOptionsElement.onclick = handlingAnAnswer;
+
+// connects submit button on outtro page to save the score to local storage
+submitButton.onclick = saveScore;
