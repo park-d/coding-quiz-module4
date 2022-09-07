@@ -37,7 +37,6 @@ function quizStart() {
     displayQuestion();
 }
 
-
 function displayQuestion() {
     // display the quiz content questions, and generate buttons for answer options 
     //defining variables in local scope to use in dynamic question display
@@ -62,5 +61,43 @@ function displayQuestion() {
     }
 }
 
+// function that switches to next question, and gives comments if it is right or wrong
+function nextQuestion(event) {
+    var buttonElement = event.target;
+
+    if (!buttonElement.matches(".option")) {
+        return;
+    }
+
+    if (buttonElement.value === quizContent[questionNum].answer) {
+        buttonElement.setAttribute("style", "background-color: green");
+        buttonElement.textContent = "Correct!";
+
+
+    } else {
+        timer = timer - 15;
+        timerElement.textContent = timer;
+
+        if (timer <= 0) {
+            timer = 0;
+        }
+
+        buttonElement.setAttribute("style", "background-color: red");
+        buttonElement.textContent = "Incorrect!";
+    }
+
+    setTimeout(function () {
+        questionNum = questionNum + 1;
+        if (timer <= 0 || questionNum === quizContent.length) {
+            endGame();
+        } else {
+
+            displayQuestion();
+        }
+    }, 550);
+
+}
 // connects start button on intro page to the timer function
 startButton.onclick = quizStart;
+
+quizOptionsElement.onclick = nextQuestion;
