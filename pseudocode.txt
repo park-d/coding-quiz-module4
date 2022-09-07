@@ -1,7 +1,7 @@
 Pseudo code
-- I need a homescreen that gives the title, instructions, a link to view high scores, a timer, and a button to start the quiz
-- when you start the quiz, the first questions pops up onto the screen and the above elements excep timer and high scores disappear
-    - when you hover the answers, they highlight
+- I need a homescreen that gives the title, instructions, a link to view high scores, a timer, and a button to start the quiz XXX
+- when you start the quiz, the first questions pops up onto the screen and the above elements excep timer and high scores disappear XXX
+    - when you hover the answers, they highlight XXX
     - when you click the answer, it shows if you are right or wrong, then switches to the next question.
     - if you are wrong, it subtracts 15 seconds from the timer. 
     - At the end of the quiz, your score is displayed, you input your initials and save that to the high scores page.
@@ -10,7 +10,7 @@ Pseudo code
 Acceptance Criteria
 GIVEN I am taking a code quiz
 WHEN I click the start button
-THEN a timer starts and I am presented with a question
+THEN a timer starts and I am presented with a question XXX
 WHEN I answer a question
 THEN I am presented with another question
 WHEN I answer a question incorrectly

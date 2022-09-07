@@ -1,11 +1,14 @@
 // Global Variables needed
 var timer = 75;
 var timeInterval;
+var questionNum = 0;
 
 // DOM Elements
 var timerElement = document.getElementById("time");
 var startButton = document.getElementById("start-quiz");
 var introElement = document.getElementById("intro-content");
+var questionElement = document.getElementById('quiz-question');
+var quizOptionsElement = document.getElementById("quiz-options");
 
 function quizStart() {
     // start timer, hide intro elements, and show the quiz content
@@ -32,6 +35,31 @@ function quizStart() {
 
     //run the fuction below that actually displays the questions
     displayQuestion();
+}
+
+
+function displayQuestion() {
+    // display the quiz content questions, and generate buttons for answer options 
+    //defining variables in local scope to use in dynamic question display
+    var currentQuestionNum = quizContent[questionNum];
+
+    // selecting the element for the question, then putting the text for the current question into the element based on the quizContent object
+    questionElement.textContent = currentQuestionNum.question;
+
+    // adding something to clear the previously made options, or else more buttons append to the option list
+    quizOptionsElement.innerHTML = '';
+
+    // creating a button for a question option, assigning the text from the object to a variable, then making the button display that text and give it the option class, then appending that button to the options div element
+    for (var i = 0; i < 4; i++) {
+        var optionButton = document.createElement("button");
+        var option = currentQuestionNum.options[i];
+        optionButton.setAttribute("class", "option");
+        optionButton.setAttribute("value", option);
+
+        optionButton.textContent = option;
+
+        quizOptionsElement.appendChild(optionButton);
+    }
 }
 
 // connects start button on intro page to the timer function
