@@ -1,17 +1,106 @@
+body{
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background-color: rgba(202, 128, 255, 0.277);
+    font-size: 20px;
+}
+
+.scoreLink{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: black;
+    border: solid indigo 3px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration:none; 
+    color: inherit;
+}
+.timer{
+    position:absolute;
+    top: 10px;
+    right: 10px;  
+    color: black;
+    border: solid indigo 3px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.scoreLink:hover {
+    background-color: indigo;
+    border: solid  black 3px;
+    color: white;
+}
+
+h1{
+    font-size: 200%;
+    text-align: center;
+}
+
+.intro, .show{
+    background-color:white;
+    border: 5px indigo solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 75%;
+    margin: 15% auto;
+    text-align: center;
+}
+
 .hide{
     display: none;
 }
 
 button {
     margin: 5px;
-    border: none;
-    background-color: black;
-    color: white;
+    border: solid indigo 3px;
+    color: black;
+    background-color:  rgba(202, 128, 255, 0.277);
     padding: 25px;
     border-radius: 30px;
+    font-weight: bold;
+    width: 40%;
+    height: 10%;
+    text-align: center;
 }
 
 button:hover {
-    background-color: yellow;
-    color: black;
+    color: white;
+    border: solid black 3px;
+    background-color: indigo;
+}
+
+#highscore-div{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    margin: 5% auto;
+    background-color:white;
+    border: 5px indigo solid;
+    border-radius: 10px;
+    width: 80%;
+}
+
+ol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li{
+    background-color:rgba(202, 128, 255, 0.15);
+    border-radius: 10px;
+    width: 25%;
+    padding: 10px;
+    margin: 5px;
+    text-align: left;
+    
+}
+
+#back, #clear-scores{
+    width: 25%;
 }

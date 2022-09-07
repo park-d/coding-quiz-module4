@@ -12,6 +12,7 @@ var quizOptionsElement = document.getElementById("quiz-options");
 var outtroElement = document.getElementById("out-tro");
 var playerElement = document.getElementById("player-initials")
 var submitButton = document.getElementById("submit-scores");
+var quizContentElement = document.getElementById("quiz-content");
 
 // start timer, hide intro elements, and show the quiz content
 function quizStart() {
@@ -31,9 +32,9 @@ function quizStart() {
     //hiding element that had any introduction elements
     introElement.setAttribute("class", "hide");
 
-    // getting the element that will store the actual quiz questions and remove it from .hide class
-    var quizContentElement = document.getElementById("quiz-content");
-    quizContentElement.removeAttribute("class");
+    //remove the questions element from .hide class
+
+    quizContentElement.setAttribute("class", "show");
 
     //run the fuction below that actually displays the questions
     displayQuestion();
@@ -120,8 +121,8 @@ function endGame() {
     }
     timerElement.textContent = timer;
     // hides and unhides sections of the page based on the end of the game
-    outtroElement.removeAttribute("class");
-    questionElement.setAttribute("class", "hide");
+    outtroElement.setAttribute("class", "show");
+    quizContentElement.setAttribute("class", "hide");
     quizOptionsElement.setAttribute("class", "hide");
     //creating variable to save what score the player got
     var postedScore = document.getElementById("player-score")
