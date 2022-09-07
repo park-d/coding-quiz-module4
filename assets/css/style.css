@@ -19,6 +19,7 @@ a{
     text-decoration:none; 
     color: inherit;
 }
+
 .timer{
     position:absolute;
     top: 10px;
@@ -74,6 +75,7 @@ button:hover {
     background-color: indigo;
 }
 
+/* highscores page  */
 #highscore-div{
     text-align: center;
     align-content: center;
