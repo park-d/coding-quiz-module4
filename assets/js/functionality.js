@@ -78,17 +78,13 @@ function handlingAnAnswer(event) {
         buttonElement.setAttribute("style", "background-color: green");
         buttonElement.textContent = "Correct!";
         // setting all the other buttons attribute to disabled after clicking on the user answer choice
-        // TO DO 
 
     // determining when the answer is wrong, subtracting the penalty, updating the time, and changing attributes
     } else {
         timer = timer - 15;
         timerElement.textContent = timer;
-
         buttonElement.setAttribute("style", "background-color: red");
         buttonElement.textContent = "Incorrect!";
-
-    
     }
 
     //calling the disable button function that I created below
@@ -113,8 +109,8 @@ function disableButtons() {
     for (var i = 0; i < allButtons.length; i++) {
         allButtons[i].setAttribute('disabled', 'disabled');
     }
-
 }
+
 //endGame function carries out everything to end the game, stop the timer, etc, change page, etc.
 function endGame() {
     //stops timer
