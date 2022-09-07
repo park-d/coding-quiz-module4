@@ -9,6 +9,9 @@ var startButton = document.getElementById("start-quiz");
 var introElement = document.getElementById("intro-content");
 var questionElement = document.getElementById('quiz-question');
 var quizOptionsElement = document.getElementById("quiz-options");
+var outtroElement = document.getElementById("out-tro");
+var playerElement = document.getElementById("player-initials")
+var submitButton = document.getElementById("submit-scores");
 
 function quizStart() {
     // start timer, hide intro elements, and show the quiz content
@@ -64,16 +67,24 @@ function displayQuestion() {
 // function that switches to next question, and gives comments if it is right or wrong
 function nextQuestion(event) {
     var buttonElement = event.target;
+    var allButtons = document.querySelectorAll(".option")
+    console.log(allButtons);
 
+    // handling for the case in which user misses the button and clicks behind it, and it throws an incorrect outcome
     if (!buttonElement.matches(".option")) {
         return;
     }
 
+    // conditional for determining when the answer is right, and changing attributes
     if (buttonElement.value === quizContent[questionNum].answer) {
         buttonElement.setAttribute("style", "background-color: green");
         buttonElement.textContent = "Correct!";
+        // setting all the other buttons attribute to disabled after clicking on the user answer choice
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].setAttribute('disabled', 'disabled');
+        }
 
-
+    // determining when the answer is wrong, subtracting the penalty, updating the time, and changing attributes
     } else {
         timer = timer - 15;
         timerElement.textContent = timer;
@@ -84,20 +95,27 @@ function nextQuestion(event) {
 
         buttonElement.setAttribute("style", "background-color: red");
         buttonElement.textContent = "Incorrect!";
+        // setting all the other buttons attribute to disabled after clicking on the user answer choice
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].setAttribute('disabled', 'disabled');
+        }
     }
 
+    // this sets a delay before moving on to the next question so you can see the response 
     setTimeout(function () {
         questionNum = questionNum + 1;
+        
         if (timer <= 0 || questionNum === quizContent.length) {
             endGame();
         } else {
-
             displayQuestion();
         }
-    }, 550);
 
+    }, 650);
 }
+
 // connects start button on intro page to the timer function
 startButton.onclick = quizStart;
 
+//connects buttons for answer options to switch to the next question function
 quizOptionsElement.onclick = nextQuestion;
