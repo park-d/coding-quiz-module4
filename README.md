@@ -2,7 +2,7 @@
 
 ## Description
 
-In order to help familiarize myself with coding assessments and to use the skills covered in the most recent bootcamp module regarding Web APIs, I built a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+In order to help familiarize myself with coding assessments and to use the skills covered in the most recent bootcamp module regarding Web APIs, I built a timed coding quiz with multiple-choice questions. This app runs in the browser and will features dynamically updated HTML and CSS powered by JavaScript code I wrote. It has a clean, polished, and responsive user interface. 
 
 ## Installation
 
